@@ -16,35 +16,24 @@ export interface IAllOptions {
 }
 
 function App() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
   const [pageState, setPageState] = useState<IAllOptions>(defaultArticleState);
-  function toggleOpen() {
-    setIsOpen((oldVal) => !oldVal);
-  }
 
   return (
-    <>
-      <div
-        className={clsx(styles.main)}
-        style={
-          {
-            "--font-family": pageState.fontFamilyOption.value,
-            "--font-size": pageState.fontSizeOption.value,
-            "--font-color": pageState.fontColor.value,
-            "--container-width": pageState.contentWidth.value,
-            "--bg-color": pageState.backgroundColor.value,
-          } as CSSProperties
-        }
-      >
-        <ArticleParamsForm
-          toggleOpenFn={toggleOpen}
-          openState={isOpen}
-          setPageState={setPageState}
-        />
-        <Article />
-      </div>
-    </>
+    <div
+      className={styles.main}
+      style={
+        {
+          "--font-family": pageState.fontFamilyOption.value,
+          "--font-size": pageState.fontSizeOption.value,
+          "--font-color": pageState.fontColor.value,
+          "--container-width": pageState.contentWidth.value,
+          "--bg-color": pageState.backgroundColor.value,
+        } as CSSProperties
+      }
+    >
+      <ArticleParamsForm setPageState={setPageState} />
+      <Article />
+    </div>
   );
 }
 

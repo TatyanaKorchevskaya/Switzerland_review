@@ -20,11 +20,9 @@ export const Radio = (props: RadioProps) => {
   return (
     <div className={styles.container}>
       {title && (
-        <>
-          <Text size={12} weight={800} uppercase>
-            {title}
-          </Text>
-        </>
+        <Text size={12} weight={800} uppercase>
+          {title}
+        </Text>
       )}
       <div className={styles.options_class}>
         {options.map((option) => (

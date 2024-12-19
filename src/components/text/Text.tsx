@@ -49,6 +49,7 @@ export const Text = ({
     styles[`${fontStyle}`],
     { [styles.uppercase]: uppercase },
     styles[`${align}`],
+    styles[`${family}`],
     { [styles.dynamicLite]: dynamicLite },
     elementClasses
   );

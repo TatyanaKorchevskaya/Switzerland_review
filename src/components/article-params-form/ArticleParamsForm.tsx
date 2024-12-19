@@ -11,29 +11,41 @@ import {
   fontFamilyOptions,
   fontSizeOptions,
 } from "./../../constants/acrticleVar";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useRef } from "react";
 import { Radio } from "../radio/Radio";
 import { Splitter } from "../splitter/Splitter";
 import { Button } from "../button/Button";
 import { IAllOptions } from "../../App";
 import clsx from "clsx";
 import { ArrowBtn } from "../arrow-btn/ArrowBtn";
+import { useOutsideClickClose } from "./hooks/useOutsideClickClose";
 
 interface PropsArticleParamsForm {
-  toggleOpenFn: () => void;
-  openState: boolean;
   setPageState: React.Dispatch<React.SetStateAction<IAllOptions>>;
 }
 
 export const ArticleParamsForm = ({
-  toggleOpenFn,
-  openState,
   setPageState,
 }: PropsArticleParamsForm) => {
-  const [isOpened, setIsOpened] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  function toggleOpen() {
+    setIsMenuOpen((oldVal) => !oldVal);
+  }
+  const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
 
   const [formState, setFormState] =
     useState<ArticleStateType>(defaultArticleState);
+
+  const rootRef = useRef<HTMLDivElement>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  useOutsideClickClose({
+    isMenuOpen,
+    rootRef,
+    btnRef,    
+    onClose: toggleOpen,
+    onChange: setIsMenuOpen,
+  });
 
   const handleChange = (fieldName: string) => {
     return (value: OptionType) => {
@@ -56,14 +68,19 @@ export const ArticleParamsForm = ({
   };
   return (
     <>
-      <ArrowBtn isActive={openState} onClick={toggleOpenFn} />
+      <ArrowBtn isActive={isMenuOpen} onClick={toggleOpen} refElement={btnRef} />
       <aside
+        ref={rootRef}
         className={clsx({
           [styles.container]: true,
-          [styles.container_open]: openState,
+          [styles.container_open]: isMenuOpen,
         })}
       >
-        <form className={styles.form} onSubmit={handleSubmit} onReset={handleReset}>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit}
+          onReset={handleReset}
+        >
           <Text as="h2" size={31} weight={800}>
             Задайте параметры
           </Text>
