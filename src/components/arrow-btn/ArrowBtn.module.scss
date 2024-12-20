@@ -1,0 +1,28 @@
+.btn {
+    position: fixed;
+    top: 32px;
+    left: 0;
+    width: 100px;
+    transition: left 0.5s ease;
+    border: none;
+    background: #000;
+    cursor: pointer;}
+
+
+    .btn:hover {
+        background: #ffc802;
+    }
+
+    .btn:active {
+        background: #787878;
+    }
+
+
+.img {
+    opacity: 1;
+}
+
+.open {
+    transform: rotate(180deg);
+    left: 616px;
+}

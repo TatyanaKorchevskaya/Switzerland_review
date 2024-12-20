@@ -1,0 +1,38 @@
+.article {
+    display: block;
+    
+    }
+
+.title {
+    margin-bottom: 24px;
+}
+
+.subtitle {
+    display: block;
+    max-width: 680px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.image {
+    width: 100%;
+}
+
+.container {
+    display: block;
+    margin: 0 auto;
+    padding: 0 103px;
+    width: var(--container-width)
+}
+
+.img_description {
+    display: block;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
