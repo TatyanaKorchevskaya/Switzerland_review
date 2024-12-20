@@ -90,6 +90,8 @@ export const ArticleParamsForm = ({
               selected={formState.fontFamilyOption}
               options={fontFamilyOptions}
               onChange={handleChange("fontFamilyOption")}
+              parent="ArticleParamsForm"
+
             />
             <Radio
               title="Размер шрифта"
@@ -103,6 +105,7 @@ export const ArticleParamsForm = ({
               selected={formState.fontColor}
               options={fontColors}
               onChange={handleChange("fontColor")}
+              parent="ArticleParamsForm"
             />
             <Splitter />
             <Select
@@ -110,12 +113,14 @@ export const ArticleParamsForm = ({
               selected={formState.backgroundColor}
               options={backgroundColors}
               onChange={handleChange("backgroundColor")}
+              parent="ArticleParamsForm"
             />
             <Select
               title="Ширина контента"
               selected={formState.contentWidth}
               options={contentWidthArr}
               onChange={handleChange("contentWidth")}
+              parent="ArticleParamsForm"
             />
           </div>
 

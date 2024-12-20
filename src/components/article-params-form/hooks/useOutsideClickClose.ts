@@ -18,10 +18,13 @@ export const useOutsideClickClose = ({
 	useEffect(() => {
 		const handleClick = (event: MouseEvent) => {
 			const { target } = event;
-					
-			console.log((target as HTMLElement).closest(`.${rootRef.current?.className}`));
-			
-			if (target instanceof Node && !btnRef.current?.contains(target) && !rootRef.current?.contains(target)) {
+
+			if (
+				target instanceof Node
+				&& !btnRef.current?.contains(target)
+				&& !rootRef.current?.contains(target)
+				&& (target as HTMLElement).getAttribute("data-parent") !== "ArticleParamsForm"
+			) {
 				isMenuOpen && onClose?.();
 				onChange?.(false);
 			}

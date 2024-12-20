@@ -20,10 +20,11 @@ type SelectProps = {
   onChange?: (selected: OptionType) => void;
   onClose?: () => void;
   title?: string;
+  parent?: string | undefined;
 };
 
 export const Select = (props: SelectProps) => {
-  const { options, placeholder, selected, onChange, onClose, title } = props;
+  const { options, placeholder, selected, onChange, onClose, title, parent } = props;
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const placeholderRef = useRef<HTMLDivElement>(null);
@@ -99,6 +100,7 @@ export const Select = (props: SelectProps) => {
                   key={option.value}
                   option={option}
                   onClick={() => handleOptionClick(option)}
+                  parent={parent}
                 />
               ))}
           </ul>

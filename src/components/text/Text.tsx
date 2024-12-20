@@ -25,6 +25,8 @@ type TextProps = {
 
   /** Булевая пропса, делает динамическим только семью шрифтов и цвет */
   dynamicLite?: boolean;
+
+  parent?: string | undefined;
 };
 
 export const Text = ({
@@ -39,6 +41,7 @@ export const Text = ({
   align = "left",
   family = 'open-sans',
   dynamicLite = false,
+  parent="",
 
 }: TextProps) => {
   const className = clsx(
@@ -54,5 +57,5 @@ export const Text = ({
     elementClasses
   );
 
-  return <Tag className={className}>{children}</Tag>;
+  return <Tag className={className} data-parent={parent}>{children}</Tag>;
 };
